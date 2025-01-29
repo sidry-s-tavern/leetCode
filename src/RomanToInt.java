@@ -16,19 +16,13 @@ public class RomanToInt {
                 next = romanToIntChar(s.charAt(i + 1));
                 if (curr < next) {
                     res = res + next - curr;
-                    System.out.println("i: "+i);
                     i++;
-                    System.out.println("i: "+i);
                 } else {
                     res += curr;
                 }
             } else {
                 res += curr;
             }
-            System.out.println("index: "+i);
-            System.out.println(s.charAt(i) + " " + romanToIntChar(s.charAt(i)));
-            System.out.println("res: "+res);
-            System.out.println();
         }
         return res;
     }
