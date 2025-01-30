@@ -3,9 +3,16 @@ import java.util.List;
 
 public class LowestCommonPrefix {
     public String longestCommonPrefix(String[] strs) {
+        if (strs.length == 1) {
+            if (strs[0].isEmpty()){
+                return "";
+            } else {
+                return strs[0];
+            }
+        }
         List<String> contains = getContainsToList(strs);
 
-        if (contains.size() != strs.length-1) return null;
+        if (contains.size() != strs.length-1) return new String("");
 
         return getShortestFromList(contains);
     }
