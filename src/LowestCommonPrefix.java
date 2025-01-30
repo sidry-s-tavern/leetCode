@@ -5,13 +5,9 @@ public class LowestCommonPrefix {
     public String longestCommonPrefix(String[] strs) {
         List<String> contains = getContainsToList(strs);
 
-        printArray(contains);
+        if (contains.size() != strs.length-1) return null;
 
-        System.out.println(contains.size() + " - size");
-        System.out.println(strs.length + " - length");
-        if (contains.size() != strs.length) return "Error";
-
-        return null;
+        return getShortestFromList(contains);
     }
 
     private List<String> getContainsToList(String[] strs) {
@@ -19,7 +15,7 @@ public class LowestCommonPrefix {
         for (int i = 0; i < strs.length-1; i++) {
             if (!containsStartEach(strs[i], strs[i + 1]).isEmpty())
             {
-                contains.add(strs[i]);
+                contains.add(containsStartEach(strs[i], strs[i + 1]));
             }
         }
         return contains;
@@ -27,24 +23,20 @@ public class LowestCommonPrefix {
 
     public String containsStartEach(String curr, String next) {
         String sub = "";
-        for (int i = 0; i < curr.length(); i++) {
-            for (int j = 0; j < next.length(); j++) {
-                if (curr.charAt(i) == next.charAt(j)) {
+        int lowest = Math.min(curr.length(), next.length());
+        for (int i = 0; i < lowest; i++) {
+                if (curr.charAt(i) == next.charAt(i)) {
                     sub = sub + curr.charAt(i);
                 }
                 else {
-                    return "";
+                    break;
                 }
-            }
         }
         return sub;
     }
 
-    public void printArray(List<String> strs)
+    public String getShortestFromList(List<String> stringList)
     {
-        for(String e: strs)
-        {
-            System.out.println(e);
-        }
+        return stringList.stream().min(String::compareTo).toString().substring(9,stringList.stream().min(String::compareTo).toString().length()-1);
     }
 }
