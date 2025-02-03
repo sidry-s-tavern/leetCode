@@ -33,12 +33,11 @@ public class ValidParentheses {
                 return false;
             }
         }
-        isValid(result);
-        return false;
+        if (result.equals(s)) return false;
+        return isValid(result);
     }
 
     public boolean initialTests(String s) {
-        if (s.isEmpty()) return false;
         if (s.length() % 2 != 0) return false;
         return (s.indexOf('(') != -1) || (s.indexOf(')') != -1) || (s.indexOf('[') != -1) || (s.indexOf(']') != -1) || (s.indexOf('{') != -1) || (s.indexOf('}') != -1);
     }
@@ -48,7 +47,7 @@ public class ValidParentheses {
                 ((s.indexOf(c) - s.indexOf(getClosed(c)) < 0)));
     }
 
-    private static char getClosed(char c) {
+    public char getClosed(char c) {
         return switch (c) {
             case '(' -> ')';
             case '{' -> '}';
@@ -71,14 +70,13 @@ public class ValidParentheses {
     }
 
     public String cleanString(String s, char c) {
-        if (isExist(s, c)) return (s.substring(0, s.indexOf(c))
+        if ((isExist(s, c)) && (isExist(s, getClosed(c)))) return (s.substring(0, s.indexOf(c))
                 + s.substring(s.indexOf(c) + 1, s.indexOf(getClosed(c)))
                 + s.substring(s.indexOf(getClosed(c)) + 1));
         return s;
     }
 
     private String checkBrackets(String s, char c) {
-        System.out.println("checkBrackets: " + s + " -> " + cleanString(s, c));
         if (s.isEmpty()) return s;
         if (isExist(s, c))
             if (isPaired(s, c))
