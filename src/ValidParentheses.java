@@ -19,6 +19,7 @@ public class ValidParentheses {
         switch (s.charAt(0)) {
             case '(': {
                 result = checkBrackets(s, '(');
+                System.out.println(result);
                 break;
             }
             case '[': {
@@ -43,8 +44,8 @@ public class ValidParentheses {
     }
 
     public boolean isValid(String s, char c) {
-        return ((s.indexOf(c) - s.indexOf(getClosed(c)) % 2 != 0) &&
-                ((s.indexOf(c) - s.indexOf(getClosed(c)) < 0)));
+        return ((s.indexOf(c) - s.lastIndexOf(getClosed(c)) % 2 != 0) &&
+                ((s.indexOf(c) - s.lastIndexOf(getClosed(c)) < 0)));
     }
 
     public char getClosed(char c) {
@@ -71,8 +72,8 @@ public class ValidParentheses {
 
     public String cleanString(String s, char c) {
         if ((isExist(s, c)) && (isExist(s, getClosed(c)))) return (s.substring(0, s.indexOf(c))
-                + s.substring(s.indexOf(c) + 1, s.indexOf(getClosed(c)))
-                + s.substring(s.indexOf(getClosed(c)) + 1));
+                + s.substring(s.indexOf(c) + 1, s.lastIndexOf(getClosed(c)))
+                + s.substring(s.lastIndexOf(getClosed(c)) + 1));
         return s;
     }
 
@@ -80,9 +81,8 @@ public class ValidParentheses {
         if (s.isEmpty()) return s;
         if (isExist(s, c))
             if (isPaired(s, c))
-                if (isValid(s, c)) {
+                if (isValid(s, c))
                     return cleanString(s, c);
-                }
         return s;
     }
 }
