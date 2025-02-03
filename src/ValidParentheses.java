@@ -13,36 +13,29 @@
 */
 public class ValidParentheses {
     public boolean isValid(String s) {
-//        System.out.print(s + " -> ");
+        if (s.isEmpty()) return true;
         if (!initialTests(s)) return false;
-        boolean res = false;
-        res = foo2(s);
-        return res;
+        String result;
+        switch (s.charAt(0)) {
+            case '(': {
+                result = checkBrackets(s, '(');
+                break;
+            }
+            case '[': {
+                result = checkBrackets(s, '[');
+                break;
+            }
+            case '{': {
+                result = checkBrackets(s, '{');
+                break;
+            }
+            default: {
+                return false;
+            }
+        }
+        isValid(result);
+        return false;
     }
-
-//    private boolean foo(String s) {
-//        if (checkBrakets(s, '(')) return false;
-//        if (checkBrakets(s, '{')) return false;
-//        if (checkBrakets(s, '[')) return false;
-//        return true;
-//    }
-
-//    private boolean checkBrakets(String s, char c) {
-//        System.out.println("checkBrakets with s:" + s + " & c:" + c);
-//        if (s.isEmpty()) return true;
-//        if (isExist(s, c)) {
-//            if (isPaired(s, c)) {
-//                if (isValid(s, c)) {
-//                    System.out.println(s + " > clean > " + cleanString(s, c));
-//                    checkBrakets(cleanString(s, c),c);
-//                } else {
-//                    System.out.println("isValid > false");
-//                    return false;
-//                }
-//            } else return false;
-//        }
-//        return false;
-//    }
 
     public boolean initialTests(String s) {
         if (s.isEmpty()) return false;
@@ -51,8 +44,6 @@ public class ValidParentheses {
     }
 
     public boolean isValid(String s, char c) {
-        System.out.println("4 s:" + s + " & c:" + c + " isValid: " + ((s.indexOf(c) - s.indexOf(getClosed(c)) % 2 != 0) &&
-                ((s.indexOf(c) - s.indexOf(getClosed(c)) < 0))));
         return ((s.indexOf(c) - s.indexOf(getClosed(c)) % 2 != 0) &&
                 ((s.indexOf(c) - s.indexOf(getClosed(c)) < 0)));
     }
@@ -86,24 +77,14 @@ public class ValidParentheses {
         return s;
     }
 
-    public boolean foo2(String s) {
-        String result = "";
-        if (s.charAt(0) == '(') {
-            result = checkBrakets(s, '(');
-            System.out.println("result: "+result);
-        }
-        return result.isEmpty();
-    }
-
-    private String checkBrakets(String s, char c) {
-        System.out.println("checkBrakets with s:" + s + " & c:" + c);
+    private String checkBrackets(String s, char c) {
+        System.out.println("checkBrackets: " + s + " -> " + cleanString(s, c));
         if (s.isEmpty()) return s;
         if (isExist(s, c))
             if (isPaired(s, c))
                 if (isValid(s, c)) {
-                    checkBrakets(cleanString(s, c), c);
-                    return s;
+                    return cleanString(s, c);
                 }
-        return "";
+        return s;
     }
 }
