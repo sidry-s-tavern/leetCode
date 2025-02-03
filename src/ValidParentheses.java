@@ -13,15 +13,20 @@
 */
 public class ValidParentheses {
     public boolean isValid(String s) {
-        System.out.print(s+" -> ");
+//        System.out.print(s + " -> ");
         if (!initialTests(s)) return false;
         boolean res = false;
-        if ((isExist(s, '('))&&(isExist(s,')'))) {
-            res = isValid(s,'(');
-        }if ((isExist(s, '['))&&(isExist(s,']'))) {
-            res = isValid(s,'[');
-        }if ((isExist(s, '{'))&&(isExist(s,'}'))) {
-            res = isValid(s,'{');
+        if (isPaired(s,'(')) {
+            System.out.println("isPaired (:"+isPaired(s,'('));
+            res = isValid(s, '(');
+        }
+        if (isPaired(s,'[')) {
+            System.out.println("isPaired [:"+isPaired(s,'['));
+            res = isValid(s, '[');
+        }
+        if (isPaired(s,'{')) {
+            System.out.println("isPaired {:"+isPaired(s,'{'));
+            res = isValid(s, '{');
         }
         return res;
     }
@@ -32,35 +37,36 @@ public class ValidParentheses {
         return (s.indexOf('(') != -1) || (s.indexOf(')') != -1) || (s.indexOf('[') != -1) || (s.indexOf(']') != -1) || (s.indexOf('{') != -1) || (s.indexOf('}') != -1);
     }
 
-    public boolean isPaired(String s) {
-        if (s.isEmpty()) return true;
-        if (s.indexOf('(') != -1) if (s.indexOf(')') != -1)
-            isPaired(s.substring(0, s.indexOf('('))
-                    + s.substring(s.indexOf('(') + 1, s.indexOf(')'))
-                    + s.substring(s.indexOf(')') + 1));
-        return false;
+    public boolean isValid(String s, char c) {
+        return (s.indexOf(c) - s.indexOf(getClosed(c)) % 2 != 0);
     }
 
-    public boolean isValid(String s, char c) {
-        char cClosed = 0;
-        switch (c) {
-            case '(': {
-                cClosed = ')';
-                break;
-            }
-            case '{': {
-                cClosed = '}';
-                break;
-            }
-            case '[': {
-                cClosed = ']';
-                break;
-            }
-        }
-        return (s.indexOf(c) - s.indexOf(cClosed) % 2 != 0);
+    private static char getClosed(char c) {
+        return switch (c) {
+            case '(' -> ')';
+            case '{' -> '}';
+            case '[' -> ']';
+            default -> 0;
+        };
     }
 
     public boolean isExist(String s, char c) {
         return s.indexOf(c) != -1;
+    }
+
+    public boolean isPaired(String s, char c) {
+        return switch (c) {
+            case '(' -> isExist(s, ')');
+            case '{' -> isExist(s, '}');
+            case '[' -> isExist(s, ']');
+            default -> false;
+        };
+    }
+
+    public String cleanString(String s, char c)
+    {
+        String res;
+        res = s.substring(0,s.indexOf(c));
+        return res;
     }
 }
