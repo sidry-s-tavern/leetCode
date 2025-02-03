@@ -16,11 +16,11 @@ public class ValidParentheses {
         System.out.print(s+" -> ");
         if (!initialTests(s)) return false;
         boolean res = false;
-        if (isExist(s, '(')) {
+        if ((isExist(s, '('))&&(isExist(s,')'))) {
             res = isValid(s,'(');
-        }if (isExist(s, '[')) {
+        }if ((isExist(s, '['))&&(isExist(s,']'))) {
             res = isValid(s,'[');
-        }if (isExist(s, '{')) {
+        }if ((isExist(s, '{'))&&(isExist(s,'}'))) {
             res = isValid(s,'{');
         }
         return res;
