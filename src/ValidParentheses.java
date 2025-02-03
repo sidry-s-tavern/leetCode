@@ -16,33 +16,33 @@ public class ValidParentheses {
 //        System.out.print(s + " -> ");
         if (!initialTests(s)) return false;
         boolean res = false;
-        res = foo(s);
+        res = foo2(s);
         return res;
     }
 
-    private boolean foo(String s) {
-        if (checkBrakets(s, '(')) return false;
-        if (checkBrakets(s, '{')) return false;
+//    private boolean foo(String s) {
+//        if (checkBrakets(s, '(')) return false;
+//        if (checkBrakets(s, '{')) return false;
 //        if (checkBrakets(s, '[')) return false;
-        return true;
-    }
+//        return true;
+//    }
 
-    private boolean checkBrakets(String s, char c) {
-        System.out.println("checkBrakets with s:" + s + " & c:" + c);
-        if (s.isEmpty()) return true;
-        if (isExist(s, c)) {
-            if (isPaired(s, c)) {
-                if (isValid(s, c)) {
-                    System.out.println(s + " > clean > " + cleanString(s, c));
-                    checkBrakets(cleanString(s, c),c);
-                } else {
-                    System.out.println("isValid > false");
-                    return false;
-                }
-            } else return false;
-        }
-        return false;
-    }
+//    private boolean checkBrakets(String s, char c) {
+//        System.out.println("checkBrakets with s:" + s + " & c:" + c);
+//        if (s.isEmpty()) return true;
+//        if (isExist(s, c)) {
+//            if (isPaired(s, c)) {
+//                if (isValid(s, c)) {
+//                    System.out.println(s + " > clean > " + cleanString(s, c));
+//                    checkBrakets(cleanString(s, c),c);
+//                } else {
+//                    System.out.println("isValid > false");
+//                    return false;
+//                }
+//            } else return false;
+//        }
+//        return false;
+//    }
 
     public boolean initialTests(String s) {
         if (s.isEmpty()) return false;
@@ -84,5 +84,26 @@ public class ValidParentheses {
                 + s.substring(s.indexOf(c) + 1, s.indexOf(getClosed(c)))
                 + s.substring(s.indexOf(getClosed(c)) + 1));
         return s;
+    }
+
+    public boolean foo2(String s) {
+        String result = "";
+        if (s.charAt(0) == '(') {
+            result = checkBrakets(s, '(');
+            System.out.println("result: "+result);
+        }
+        return result.isEmpty();
+    }
+
+    private String checkBrakets(String s, char c) {
+        System.out.println("checkBrakets with s:" + s + " & c:" + c);
+        if (s.isEmpty()) return s;
+        if (isExist(s, c))
+            if (isPaired(s, c))
+                if (isValid(s, c)) {
+                    checkBrakets(cleanString(s, c), c);
+                    return s;
+                }
+        return "";
     }
 }
