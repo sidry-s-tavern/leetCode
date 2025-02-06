@@ -15,26 +15,32 @@ public class ValidParentheses {
     public boolean isValid(String s) {
         if (s.isEmpty()) return true;
         if (!initialTests(s)) return false;
-        String result;
+        String result="";
         switch (s.charAt(0)) {
             case '(': {
                 result = checkBrackets(s, '(');
-                System.out.println(result);
+                System.out.println("result ( :"+result);
                 break;
             }
             case '[': {
                 result = checkBrackets(s, '[');
+                System.out.println("result [ :"+result);
                 break;
             }
             case '{': {
                 result = checkBrackets(s, '{');
+                System.out.println("result { :"+result);
                 break;
             }
             default: {
+                System.out.println("def: result: "+result);
                 return false;
             }
         }
-        if (result.equals(s)) return false;
+        if (result.equals(s)) {
+            System.out.println("result: "+result + " s: " + s);
+            return false;
+        }
         return isValid(result);
     }
 
@@ -71,9 +77,15 @@ public class ValidParentheses {
     }
 
     public String cleanString(String s, char c) {
-        if ((isExist(s, c)) && (isExist(s, getClosed(c)))) return (s.substring(0, s.indexOf(c))
+        System.out.println("s:"+s+" c:"+c + "-> " + (s.substring(0, s.indexOf(c))
                 + s.substring(s.indexOf(c) + 1, s.lastIndexOf(getClosed(c)))
-                + s.substring(s.lastIndexOf(getClosed(c)) + 1));
+                + s.substring(s.lastIndexOf(getClosed(c)) + 1)));
+        if ((isExist(s, c)) && (isExist(s, getClosed(c)))) {
+            System.out.println(((isExist(s, c)) && (isExist(s, getClosed(c)))));
+            return (s.substring(0, s.indexOf(c))
+                    + s.substring(s.indexOf(c) + 1, s.lastIndexOf(getClosed(c)))
+                    + s.substring(s.lastIndexOf(getClosed(c)) + 1));
+        }
         return s;
     }
 
