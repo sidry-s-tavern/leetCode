@@ -2,12 +2,9 @@ import java.util.ArrayList;
 
 public class RemoveDuplicatesFromSortedArray {
     public int removeDuplicates(int[] nums) {
-        System.out.print("nums:");
-        printArray(nums);
-        nums = removeDup(nums);
-        System.out.println("---");
-        System.out.print("nums:");
-        printArray(nums);
+        int[] newArray = new int[]{};
+        newArray = removeDup(nums);
+        replaceArray(nums,newArray);
         return nums.length;
     }
 
@@ -25,6 +22,15 @@ public class RemoveDuplicatesFromSortedArray {
             result[i]=list.get(i);
         }
         return result;
+    }
+
+    public void replaceArray(int[] curr, int[] next) {
+        int i=0;
+        for(int e: next)
+        {
+            curr[i] = e;
+            i++;
+        }
     }
 
     public void printArray(int[] nums) {
