@@ -13,7 +13,7 @@
 */
 public class ValidParentheses {
     public boolean isValid(String s) {
-        System.out.println("s:"+s);
+        System.out.println("s:" + s);
         if (s.isEmpty()) return true;
         if (!initialTests(s)) return false;
         String result = "";
@@ -35,7 +35,7 @@ public class ValidParentheses {
             }
         }
         if (result.equals(s)) return false;
-        System.out.println("result:"+result);
+        System.out.println("result:" + result);
         return isValid(result);
     }
 
@@ -48,6 +48,14 @@ public class ValidParentheses {
     public boolean isValid(String s, char c) {
         return ((s.indexOf(c) - s.lastIndexOf(getClosed(c)) % 2 != 0) &&
                 ((s.indexOf(c) - s.lastIndexOf(getClosed(c)) < 0)));
+    }
+
+    public boolean isValid(String s, char c,int indexOfClosed) {
+        System.out.println("isValid:"+"");
+        return (
+                ((s.indexOf(c) - indexOfClosed) % 2 != 0) &&
+                ((s.indexOf(c) - indexOfClosed) < 0)
+        );
     }
 
     public char getClosed(char c) {
@@ -73,9 +81,6 @@ public class ValidParentheses {
     }
 
     public String cleanString(String s, char c) {
-        System.out.println("s:" + s + " c:" + c + "-> " + (s.substring(0, s.indexOf(c))
-                + s.substring(s.indexOf(c) + 1, s.lastIndexOf(getClosed(c)))
-                + s.substring(s.lastIndexOf(getClosed(c)) + 1)));
         if ((isExist(s, c)) && (isExist(s, getClosed(c)))) {
             System.out.println(((isExist(s, c)) && (isExist(s, getClosed(c)))));
             return (s.substring(0, s.indexOf(c))
@@ -85,15 +90,71 @@ public class ValidParentheses {
         return s;
     }
 
-    private String checkBrackets(String s, char c) {
+    public String cleanString(String s, char c, int indexOfClosed) {
         System.out.println("---");
-        System.out.println("checkBrackets:");
-        System.out.println("s:"+s+" c:"+c);
+        System.out.println("new cleanString");
+        System.out.println("---");
+        System.out.println("s:"+s+"->"+(s.substring(0, s.indexOf(c))
+                + s.substring(s.indexOf(c) + 1, indexOfClosed))
+                + s.substring(indexOfClosed));
+        if ((isExist(s, c)) && (isExist(s, getClosed(c)))) {
+            return (s.substring(0, s.indexOf(c))
+                    + s.substring(s.indexOf(c) + 1, indexOfClosed))
+                    + s.substring(indexOfClosed);
+        }
+        return s;
+    }
+
+
+    private String checkBrackets(String s, char c) {
         if (s.isEmpty()) return s;
         if (isExist(s, c))
             if (isPaired(s, c))
                 if (isValid(s, c))
                     return cleanString(s, c);
         return s;
+    }
+
+    private String checkBrackets(String s, char c, int indexOfClosed) {
+        System.out.println("new checkBrackets with s:" + s + " c:" + c + " indexOfClosed:" + indexOfClosed);
+        if (s.isEmpty()) return s;
+        if (isExist(s, c))
+            if (isPaired(s, c))
+                if (isValid(s, c,indexOfClosed))
+                    return cleanString(s, c, indexOfClosed);
+        return s;
+    }
+
+    public String foo(String s) {
+        //new define of pair
+        String result = "";
+        if ((s.charAt(0) == '(') || (s.charAt(0) == '[') || (s.charAt(0) == '{')) {
+            int countOpenBeforeFindClosed = 0;
+            int indexOfClosed = 0;
+            int countClosed = 0;
+            for (int i = 0; i < s.length(); i++) {
+                if (isExist(s, paired(s.charAt(0)))) {
+                    if (s.charAt(i) == s.charAt(0)) countOpenBeforeFindClosed++;
+                    if (s.charAt(i) == paired(s.charAt(0))) {
+                        indexOfClosed = i;
+                        countClosed++;
+                        if (countClosed == countOpenBeforeFindClosed) break;
+                    }
+                } else return s;
+            }
+            result = checkBrackets(s, s.charAt(0), indexOfClosed);// refuse check brackets
+        }
+        if (!result.isEmpty()) return result;
+        foo(result);
+        return s;
+    }
+
+    public char paired(char c) {
+        return switch (c) {
+            case '(' -> ')';
+            case '[' -> ']';
+            case '{' -> '}';
+            default -> 0;
+        };
     }
 }
