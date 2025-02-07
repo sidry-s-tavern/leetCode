@@ -11,8 +11,6 @@ public class Main {
 //        System.out.println(validParentheses.isValid("(){}()[]}{"));
 //        System.out.println(validParentheses.isValid("(([]){})"));
 //        System.out.println(validParentheses.isValid("[({(())}[()])]"));
-//        System.out.println(validParentheses.isValid("(())[()]"));
-
-        System.out.println("foo is: "+validParentheses.foo("(())[()]"));
+        System.out.println(validParentheses.isValid("(())[()]"));
     }
 }
