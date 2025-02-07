@@ -13,34 +13,29 @@
 */
 public class ValidParentheses {
     public boolean isValid(String s) {
+        System.out.println("s:"+s);
         if (s.isEmpty()) return true;
         if (!initialTests(s)) return false;
-        String result="";
+        String result = "";
         switch (s.charAt(0)) {
             case '(': {
                 result = checkBrackets(s, '(');
-                System.out.println("result ( :"+result);
                 break;
             }
             case '[': {
                 result = checkBrackets(s, '[');
-                System.out.println("result [ :"+result);
                 break;
             }
             case '{': {
                 result = checkBrackets(s, '{');
-                System.out.println("result { :"+result);
                 break;
             }
             default: {
-                System.out.println("def: result: "+result);
                 return false;
             }
         }
-        if (result.equals(s)) {
-            System.out.println("result: "+result + " s: " + s);
-            return false;
-        }
+        if (result.equals(s)) return false;
+        System.out.println("result:"+result);
         return isValid(result);
     }
 
@@ -49,6 +44,7 @@ public class ValidParentheses {
         return (s.indexOf('(') != -1) || (s.indexOf(')') != -1) || (s.indexOf('[') != -1) || (s.indexOf(']') != -1) || (s.indexOf('{') != -1) || (s.indexOf('}') != -1);
     }
 
+    // problem with define isValid of pair breckets. Like on start of coding... Just delete this all
     public boolean isValid(String s, char c) {
         return ((s.indexOf(c) - s.lastIndexOf(getClosed(c)) % 2 != 0) &&
                 ((s.indexOf(c) - s.lastIndexOf(getClosed(c)) < 0)));
@@ -77,7 +73,7 @@ public class ValidParentheses {
     }
 
     public String cleanString(String s, char c) {
-        System.out.println("s:"+s+" c:"+c + "-> " + (s.substring(0, s.indexOf(c))
+        System.out.println("s:" + s + " c:" + c + "-> " + (s.substring(0, s.indexOf(c))
                 + s.substring(s.indexOf(c) + 1, s.lastIndexOf(getClosed(c)))
                 + s.substring(s.lastIndexOf(getClosed(c)) + 1)));
         if ((isExist(s, c)) && (isExist(s, getClosed(c)))) {
@@ -90,6 +86,9 @@ public class ValidParentheses {
     }
 
     private String checkBrackets(String s, char c) {
+        System.out.println("---");
+        System.out.println("checkBrackets:");
+        System.out.println("s:"+s+" c:"+c);
         if (s.isEmpty()) return s;
         if (isExist(s, c))
             if (isPaired(s, c))
