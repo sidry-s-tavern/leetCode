@@ -2,8 +2,7 @@ import java.util.ArrayList;
 
 public class RemoveDuplicatesFromSortedArray {
     public int removeDuplicates(int[] nums) {
-        int[] newArray = new int[]{};
-        newArray = removeDup(nums);
+        int[] newArray = removeDup(nums);
         replaceArray(nums,newArray);
         return nums.length;
     }
