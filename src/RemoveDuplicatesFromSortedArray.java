@@ -2,17 +2,17 @@ import java.util.ArrayList;
 
 public class RemoveDuplicatesFromSortedArray {
     public int removeDuplicates(int[] nums) {
+        System.out.print("nums:");
         printArray(nums);
-        System.out.println("---");
         nums = removeDup(nums);
-        printArray(nums);
         System.out.println("---");
+        System.out.print("nums:");
+        printArray(nums);
         return nums.length;
     }
 
-    public int[] removeDup(int[]nums)
-    {
-        int curr=0;
+    public int[] removeDup(int[]nums) {
+        int curr=-1;
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int num : nums) {
             if (curr < num) {
