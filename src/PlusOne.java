@@ -3,8 +3,9 @@
 //[9] -> [1,0]
 public class PlusOne {
     public int[] plusOne(int[] digits) {
-        int integer = Integer.parseInt(arrayOfIntToStr(digits)) + 1;
-        digits = stringToArrayOfInt(Integer.toString(integer));
+        System.out.println(arrayOfIntToStr(digits));
+        long integer = Long.parseLong(arrayOfIntToStr(digits)) + 1;
+        digits = stringToArrayOfInt(Long.toString(integer));
         return digits;
     }
 
