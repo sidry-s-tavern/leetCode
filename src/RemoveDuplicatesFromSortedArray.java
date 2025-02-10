@@ -27,12 +27,4 @@ public class RemoveDuplicatesFromSortedArray {
         System.arraycopy(next,0,curr,0,next.length);
         Arrays.copyOf(curr,next.length);
     }
-
-    public void printArray(int[] nums) {
-        System.out.print("[");
-        for (int i = 0; i < nums.length - 1; i++) {
-            System.out.print(nums[i] + ",");
-        }
-        System.out.println(nums[nums.length - 1] + "]");
-    }
 }
