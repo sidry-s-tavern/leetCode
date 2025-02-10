@@ -3,17 +3,22 @@
 //[9] -> [1,0]
 public class PlusOne {
     public int[] plusOne(int[] digits) {
-        digits[digits.length-1]+=1;
-        plusOneIfNine(digits);
+        int integer = Integer.parseInt(arrayOfIntToStr(digits)) + 1;
+        digits = stringToArrayOfInt(Integer.toString(integer));
         return digits;
     }
-    public int[] plusOneIfNine(int[] digits)
-    {
-        int[]temp = new int[digits.length+1];
-        System.arraycopy(digits, 0, temp, 0, digits.length);
-        temp[digits.length-1]=1;
-        temp[digits.length]=0;
-        UsefullMethods.printIntArray(temp);
-        return temp;
+
+    public String arrayOfIntToStr(int[] arrayOfInt) {
+        StringBuilder temp = new StringBuilder();
+        for (int e : arrayOfInt) temp.append(e);
+        return temp.toString();
+    }
+
+    public int[] stringToArrayOfInt(String str) {
+        int[] result = new int[str.length()];
+        for (int i = 0; i < str.length(); i++) {
+            result[i] = str.charAt(i)-48;
+        }
+        return result;
     }
 }
