@@ -8,7 +8,7 @@ public class RemoveDuplicatesFromSortedArray {
     }
 
     public int[] removeDup(int[]nums) {
-        int curr=-1;
+        int curr=-2147000;
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int num : nums) {
             if (curr < num) {
