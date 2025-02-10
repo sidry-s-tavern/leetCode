@@ -1,7 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        LengthOfLastWord lengthOfLastWord = new LengthOfLastWord();
-        System.out.println(lengthOfLastWord.lengthOfLastWord("   fly me   to   the moon  "));
-        System.out.println(lengthOfLastWord.lengthOfLastWord(" a"));
+        PlusOne plusOne = new PlusOne();
+        UsefullMethods.printIntArray(plusOne.plusOne(new int[]{4,9,9,9}));
     }
 }
