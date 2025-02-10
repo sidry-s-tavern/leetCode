@@ -6,14 +6,8 @@ public class LengthOfLastWord {
             else
                 break;
         }
-        int res = 0;
-        for (int i = s.length() - 1; i > 0; i--) {
-            if (s.charAt(i) != ' ') {
-                res = i;
-            } else {
-                return (s.length() - res);
-            }
-        }
-        return s.length();
+        return (s.indexOf(' ') != -1) ?
+                (s.length() - s.lastIndexOf(' ') - 1) :
+                s.length();
     }
 }
