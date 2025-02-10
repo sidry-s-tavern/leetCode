@@ -11,4 +11,12 @@ public class UsefullMethods {
         System.out.print(start);
         printIntArray(nums);
     }
+
+    public static int[] getIntFromInteger(Integer[] arrayOfInteger) {
+        int[] res = new int[arrayOfInteger.length];
+        for (int i = 0; i < arrayOfInteger.length; i++) {
+            res[i] = arrayOfInteger[i];
+        }
+        return res;
+    }
 }

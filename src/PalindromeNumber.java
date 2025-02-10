@@ -6,8 +6,4 @@ public class PalindromeNumber {
         }
         return true;
     }
-    public String isPalindromeTotString(int x)
-    {
-        return "For int: "+x+" answer is "+isPalindrome(x);
-    }
 }
