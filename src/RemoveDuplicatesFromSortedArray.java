@@ -1,10 +1,10 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class RemoveDuplicatesFromSortedArray {
     public int removeDuplicates(int[] nums) {
-        int[] newArray = removeDup(nums);
-        replaceArray(nums,newArray);
-        return nums.length;
+        replaceArray(nums,removeDup(nums));
+        return removeDup(nums).length;
     }
 
     public int[] removeDup(int[]nums) {
@@ -24,12 +24,8 @@ public class RemoveDuplicatesFromSortedArray {
     }
 
     public void replaceArray(int[] curr, int[] next) {
-        int i=0;
-        for(int e: next)
-        {
-            curr[i] = e;
-            i++;
-        }
+        System.arraycopy(next,0,curr,0,next.length);
+        Arrays.copyOf(curr,next.length);
     }
 
     public void printArray(int[] nums) {
