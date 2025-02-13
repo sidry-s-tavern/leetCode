@@ -1,6 +1,8 @@
 public class Main {
     public static void main(String[] args) {
         MergeSortedArray mSA = new MergeSortedArray();
-        mSA.merge(new int[]{1, 2, 3}, 3, new int[]{2, 5, 6}, 3);
+        int[]nums1 = new int[]{2,0};
+        mSA.merge(nums1, 2, new int[]{1}, 1);
+        UsefullMethods.printIntArray(nums1);
     }
 }

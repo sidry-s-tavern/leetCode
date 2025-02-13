@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class UsefullMethods {
     public static void printIntArray(int[] nums) {
         System.out.print("[");
@@ -18,5 +20,9 @@ public class UsefullMethods {
             res[i] = arrayOfInteger[i];
         }
         return res;
+    }
+
+    public static void replaceArray(int[] curr, int[] next) {
+        System.arraycopy(next,0,curr,0,next.length);
     }
 }
