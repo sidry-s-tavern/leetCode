@@ -1,10 +1,6 @@
-import java.sql.Time;
-import java.time.LocalTime;
-
 public class Main {
     public static void main(String[] args) {
-        ClimbingStairs climbingStairs = new ClimbingStairs();
-        System.out.println("result:" + climbingStairs.climbStairs(45));
-        System.out.println("result:" + climbingStairs.climbStairsLoop(45));
+        MergeSortedArray mSA = new MergeSortedArray();
+        mSA.merge(new int[]{1, 2, 3}, 3, new int[]{2, 5, 6}, 3);
     }
 }
