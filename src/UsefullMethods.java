@@ -1,5 +1,7 @@
 public class UsefullMethods {
     public static void printIntArray(int[] nums) {
+        if(nums.length==0)
+            return;
         System.out.print("[");
         for (int i = 0; i < nums.length - 1; i++) {
             System.out.print(nums[i] + ",");
@@ -18,5 +20,15 @@ public class UsefullMethods {
             res[i] = arrayOfInteger[i];
         }
         return res;
+    }
+
+    public static void printStringArray(String[] strings)
+    {
+        System.out.println("----");
+        for(String s:strings)
+        {
+            System.out.println(s);
+        }
+        System.out.println("----");
     }
 }

@@ -1,10 +1,12 @@
-import java.sql.Time;
-import java.time.LocalTime;
-
 public class Main {
     public static void main(String[] args) {
-        ClimbingStairs climbingStairs = new ClimbingStairs();
-        System.out.println("result:" + climbingStairs.climbStairs(45));
-        System.out.println("result:" + climbingStairs.climbStairsLoop(45));
+        RankTransformOfAnArray rankTransformOfAnArray = new RankTransformOfAnArray();
+//        int[] nums = {40, 10, 20, 30};
+//        int[] nums = {100,100,100};
+        int[] nums = {37,12,28,9,100,56,80,5,12};
+//    [100,100,100]
+//    [37,12,28,9,100,56,80,5,12]
+
+        UsefullMethods.printIntArray(rankTransformOfAnArray.arrayRankTransform(nums));
     }
 }
