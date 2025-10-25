@@ -49,7 +49,7 @@ public class RankTransformOfAnArray {
         for (int i = 0; i < digits.length; i++) {
             boolean isExcepted = false;
             for (int j = 0; j < except.length; j++) {
-                if(digits[i]==except[j]) isExcepted = true;
+                if (digits[i] == except[j]) isExcepted = true;
             }
             if (!isExcepted) list.add(digits[i]);
         }
